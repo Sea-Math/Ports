@@ -1,0 +1,44 @@
+{
+	"chunkVariants": 
+    {
+        "NESW": 6,
+        "NEW": 4,
+        "NES": 3,
+        "NSW": 3,
+        "ESW": 4,
+        "NE": 2,
+        "NW": 2,
+        "SW": 2,
+        "ES": 2,
+        "EW": 2,
+        "NS": 2,
+        "W": 2,
+        "E": 2,
+        "S": 2,
+        "N": 2,
+
+        "conveyor_NS": 1,
+        "conveyor_NES": 1,
+        "conveyor_NSW": 2,
+        "conveyor_NESW": 1,
+        "conveyor_N": 1
+    },
+
+    "rules":
+    {
+        "monster":
+        [
+            "see",
+            "hear",
+            "smell",
+            "duplicate",
+            "reach"
+        ],
+
+        "you":
+        [
+            "starve",
+            "freeze"
+        ]
+    }
+}
