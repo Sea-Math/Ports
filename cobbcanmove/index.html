@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <base href="https://cdn.jsdelivr.net/gh/Sea-Math/Ports@main/cobbcanmove/">
+
+  <meta charset="UTF-8">
+
+  <title>COBB CAN MOVE</title>
+
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+  <meta name="generator" content="Scirra Construct">
+
+  <link rel="manifest" href="appmanifest.json">
+
+  <link rel="apple-touch-icon" sizes="128x128"
+    href="icons/icon-128.png">
+
+  <link rel="apple-touch-icon" sizes="256x256"
+    href="icons/icon-256.png">
+
+  <link rel="apple-touch-icon" sizes="512x512"
+    href="icons/icon-512.png">
+
+  <link rel="icon" type="image/png"
+    href="icons/icon-512.png">
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+
+    html,
+    body {
+
+      margin: 0;
+      padding: 0;
+
+      width: 100%;
+      height: 100%;
+
+      overflow: hidden;
+
+      background: #111;
+
+      font-family: cursive;
+    }
+
+    #loading-screen {
+
+      position: fixed;
+
+      inset: 0;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+
+      align-items: center;
+
+      background: #111;
+
+      z-index: 99999;
+    }
+
+    #loading-text {
+
+      font-size: 42px;
+
+      font-weight: bold;
+
+      margin-bottom: 25px;
+
+      background: linear-gradient(
+        270deg,
+        #ff0000,
+        #ff7f00,
+        #ffff00,
+        #00ff00,
+        #0000ff,
+        #4b0082,
+        #8f00ff
+      );
+
+      background-size: 400% 400%;
+
+      -webkit-background-clip: text;
+
+      -webkit-text-fill-color: transparent;
+
+      animation: rainbow 3s ease infinite;
+    }
+
+    #loading-bar-bg {
+
+      width: 420px;
+
+      max-width: 90vw;
+
+      height: 28px;
+
+      overflow: hidden;
+
+      border-radius: 999px;
+
+      background: rgba(255,255,255,0.1);
+
+      border: 2px solid rgba(255,255,255,0.15);
+    }
+
+    #loading-bar {
+
+      width: 0%;
+
+      height: 100%;
+
+      border-radius: 999px;
+
+      background: linear-gradient(
+        90deg,
+        #ff0000,
+        #ff7f00,
+        #ffff00,
+        #00ff00,
+        #0000ff,
+        #4b0082,
+        #8f00ff
+      );
+
+      background-size: 400% 400%;
+
+      animation: rainbow 3s ease infinite;
+
+      transition: width 0.25s ease;
+    }
+
+    @keyframes rainbow {
+
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div id="loading-screen">
+
+    <div id="loading-text">
+      LOADING... 0%
+    </div>
+
+    <div id="loading-bar-bg">
+
+      <div id="loading-bar"></div>
+
+    </div>
+
+  </div>
+
+  <noscript>
+
+    <div id="notSupportedWrap">
+
+      <h2 id="notSupportedTitle">
+        This content requires JavaScript
+      </h2>
+
+      <p class="notSupportedMessage">
+        JavaScript appears to be disabled.
+      </p>
+
+    </div>
+
+  </noscript>
+
+  <script>
+
+    const loadingText =
+      document.querySelector("#loading-text");
+
+    const loadingBar =
+      document.querySelector("#loading-bar");
+
+    const loadingScreen =
+      document.querySelector("#loading-screen");
+
+    let progress = 0;
+
+    const fakeLoader = setInterval(() => {
+
+      if (progress < 90) {
+
+        progress += Math.random() * 7;
+
+        if (progress > 90)
+          progress = 90;
+
+        const percent =
+          Math.floor(progress);
+
+        loadingText.textContent =
+          `LOADING... ${percent}%`;
+
+        loadingBar.style.width =
+          percent + "%";
+      }
+
+    }, 180);
+
+    window.addEventListener("load", () => {
+
+      progress = 100;
+
+      loadingText.textContent =
+        "LOADING... 100%";
+
+      loadingBar.style.width = "100%";
+
+      setTimeout(() => {
+
+        clearInterval(fakeLoader);
+
+        loadingScreen.remove();
+
+      }, 700);
+
+    });
+
+  </script>
+
+  <script src="scripts/modernjscheck.js"></script>
+
+  <script src="scripts/supportcheck.js"></script>
+
+  <script src="scripts/offlineclient.js"
+    type="module"></script>
+
+  <script src="scripts/main.js"
+    type="module"></script>
+
+  <!-- DISABLED FOR CDN -->
+  <!--
+  <script src="scripts/register-sw.js"
+    type="module"></script>
+  -->
+
+</body>
+
+</html>
